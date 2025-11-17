@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>fit365 APP – Plataforma Inteligente para Personal Trainers e Alunos</title>
+  <meta name="description" content="fit365 APP conecta Personal Trainers e alunos com treinos personalizados, mais de 350 exercícios em movimento, gráficos de evolução, agenda inteligente e acesso web e mobile.">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="fit365 APP – Seu Personal Trainer Inteligente" />
+  <meta property="og:description" content="Personalize, acompanhe e motive seus alunos com treinos inteligentes, biblioteca de exercícios em movimento e gráficos de evolução." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://fit365app.com.br/" />
+  <meta property="og:image" content="https://fit365app.com.br/img/fit365card.png" />
+
+  <!-- Favicon / Logo -->
+  <link rel="icon" type="image/png" href="img/icone.png" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- SEO Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "fit365 APP",
+    "applicationCategory": "FitnessApplication",
+    "operatingSystem": "Web, Android, iOS",
+    "url": "https://fit365app.com.br/",
+    "description": "Plataforma para Personal Trainers e alunos com treinos personalizados, biblioteca de exercícios em movimento, agenda de aulas e indicadores de evolução.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "fit365 APP"
+    }
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg-main: #050816;
+      --bg-card: #0e1726;
+      --bg-soft: #131c2f;
+      --accent: #28e0b8;
+      --accent-2: #4da8ff;
+      --accent-3: #f5f5f5;
+      --text-main: #e6eefc;
+      --text-soft: #aab7d9;
+      --danger: #ff4f7b;
+      --shadow-soft: 0 18px 35px rgba(0,0,0,0.5);
+      --radius-lg: 20px;
+      --radius-pill: 999px;
+      --transition-fast: 0.2s ease-out;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #132b4f 0, #050816 45%, #02030a 100%);
+      color: var(--text-main);
+      font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* Layout básico */
+    .page-wrapper {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: rgba(5, 8, 22, 0.92);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .nav {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      overflow: hidden;
+      background: radial-gradient(circle at 10% 0, #4da8ff 0, #050816 45%, #28e0b8 100%);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.6);
+      padding: 3px;
+    }
+
+    .logo-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-text span:first-child {
+      font-family: "Orbitron", system-ui;
+      font-size: 1.1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .logo-text span:last-child {
+      font-size: 0.75rem;
+      color: var(--text-soft);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      position: relative;
+      color: var(--text-soft);
+      font-weight: 500;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      transition: width var(--transition-fast);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn {
+      border-radius: var(--radius-pill);
+      padding: 8px 18px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border: 1px solid transparent;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #050816;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.65);
+    }
+    .btn-primary:hover {
+      transform: translateY(-1px) scale(1.01);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.8);
+    }
+
+    .btn-outline {
+      border-color: rgba(255,255,255,0.18);
+      background: rgba(10, 16, 35, 0.9);
+      color: var(--text-main);
+    }
+    .btn-outline:hover {
+      border-color: var(--accent-2);
+      background: rgba(19, 28, 47, 0.95);
+      transform: translateY(-1px);
+    }
+
+    .hero {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 40px 20px 56px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.05fr);
+      gap: 32px;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      background: rgba(7, 16, 35, 0.9);
+      border: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.75rem;
+      color: var(--text-soft);
+      margin-bottom: 14px;
+    }
+
+    .hero-badge span.dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: radial-gradient(circle, var(--accent) 0, var(--accent-2) 50%, transparent 100%);
+      box-shadow: 0 0 8px var(--accent);
+    }
+
+    h1.hero-title {
+      font-family: "Orbitron", system-ui;
+      font-size: clamp(2.4rem, 3.9vw, 3.4rem);
+      line-height: 1.1;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .hero-title span.highlight {
+      background: linear-gradient(90deg, #5cf6d5, #4da8ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+      color: var(--text-soft);
+      max-width: 540px;
+      margin-bottom: 20px;
+    }
+
+    .hero-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 22px;
+      font-size: 0.78rem;
+    }
+
+    .pill {
+      border-radius: var(--radius-pill);
+      padding: 6px 12px;
+      background: rgba(10, 22, 40, 0.95);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--text-soft);
+    }
+
+    .pill strong { color: var(--accent); }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .hero-caption {
+      font-size: 0.8rem;
+      color: var(--text-soft);
+    }
+
+    .hero-caption strong {
+      color: var(--accent-2);
+    }
+
+    .hero-metrics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 18px;
+      font-size: 0.78rem;
+      color: var(--text-soft);
+    }
+
+    .hero-metrics-item {
+      padding: 8px 12px;
+      border-radius: 12px;
+      background: rgba(12, 22, 40, 0.9);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .hero-metrics-item span.value {
+      display: block;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .hero-right {
+      position: relative;
+    }
+
+    .hero-card {
+      position: relative;
+      border-radius: 26px;
+      padding: 18px 18px 16px;
+      background: radial-gradient(circle at top left, #1c2f4f 0, #050816 55%, #091426 100%);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .hero-glow {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 0, rgba(80, 220, 200, 0.24), transparent 60%),
+        radial-gradient(circle at 90% 10%, rgba(77, 168, 255, 0.3), transparent 65%);
+      pointer-events: none;
+      mix-blend-mode: screen;
+    }
+
+    .hero-card-inner {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.1fr);
+      gap: 18px;
+      align-items: center;
+      z-index: 1;
+    }
+
+    .hero-avatar {
+      position: relative;
+      isolation: isolate;
+    }
+
+    .hero-avatar img {
+      border-radius: 22px;
+      border: 1px solid rgba(172, 231, 255, 0.35);
+      box-shadow: 0 16px 45px rgba(0,0,0,0.7);
+    }
+
+    .hero-avatar-tag {
+      position: absolute;
+      left: 50%;
+      bottom: 6px;
+      transform: translateX(-50%);
+      padding: 6px 10px;
+      border-radius: var(--radius-pill);
+      font-size: 0.7rem;
+      background: rgba(5, 8, 22, 0.9);
+      border: 1px solid rgba(172,231,255,0.5);
+      color: var(--accent-3);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.7);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .hero-screen {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .hero-screen-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .hero-screen-title {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-soft);
+    }
+
+    .status-chip {
+      font-size: 0.7rem;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      background: rgba(40, 224, 184, 0.12);
+      border: 1px solid rgba(40,224,184,0.4);
+      color: var(--accent);
+    }
+
+    .hero-screen-main {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 10px;
+    }
+
+    .mini-card {
+      border-radius: 16px;
+      padding: 9px 10px;
+      background: rgba(10, 18, 38, 0.92);
+      border: 1px solid rgba(255,255,255,0.04);
+      font-size: 0.72rem;
+      color: var(--text-soft);
+    }
+
+    .mini-card h3 {
+      font-size: 0.8rem;
+      margin-bottom: 4px;
+      color: var(--accent-3);
+    }
+
+    .mini-stat {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 4px;
+    }
+
+    .mini-stat span.label {
+      color: var(--text-soft);
+    }
+
+    .mini-stat span.value {
+      color: var(--accent-2);
+      font-weight: 600;
+    }
+
+    .hero-screen-bottom {
+      margin-top: 8px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 10px;
+      align-items: center;
+    }
+
+    .hero-badge-highlight {
+      border-radius: 14px;
+      padding: 8px 10px;
+      font-size: 0.72rem;
+      background: linear-gradient(115deg, rgba(40,224,184,0.12), rgba(77,168,255,0.06));
+      border: 1px solid rgba(77,168,255,0.35);
+    }
+
+    .hero-badge-highlight strong {
+      color: var(--accent);
+    }
+
+    .hero-small-tag {
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 0.7rem;
+      background: rgba(7,13,30,0.9);
+      border: 1px dashed rgba(172,231,255,0.6);
+      color: var(--text-soft);
+      text-align: center;
+    }
+
+    .hero-small-tag span {
+      color: var(--accent-2);
+      font-weight: 600;
+    }
+
+    /* Seções genéricas */
+    section {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 18px 20px 32px;
+    }
+
+    .section-header {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .section-kicker {
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent-2);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: 1.4rem;
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+
+    .section-subtitle {
+      font-size: 0.95rem;
+      color: var(--text-soft);
+      max-width: 620px;
+    }
+
+    .two-cols {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 18px;
+      align-items: flex-start;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: 16px 18px;
+      border: 1px solid rgba(255,255,255,0.05);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      margin-bottom: 8px;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(10, 24, 48, 0.95);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--text-soft);
+      margin-bottom: 8px;
+    }
+
+    .badge strong {
+      color: var(--accent);
+    }
+
+    .list {
+      list-style: none;
+      margin-top: 8px;
+      font-size: 0.9rem;
+      color: var(--text-soft);
+    }
+
+    .list li {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      margin-bottom: 6px;
+    }
+
+    .list li::before {
+      content: "▹";
+      color: var(--accent);
+      margin-top: 1px;
+    }
+
+    /* Grid de recursos */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .feature {
+      background: var(--bg-soft);
+      border-radius: 18px;
+      padding: 14px 14px 12px;
+      border: 1px solid rgba(255,255,255,0.05);
+      font-size: 0.85rem;
+    }
+
+    .feature h3 {
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+    }
+
+    .feature p {
+      color: var(--text-soft);
+    }
+
+    .feature-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(40,224,184,0.1);
+      color: var(--accent);
+      margin-bottom: 5px;
+    }
+
+    /* Galeria / prints */
+    .gallery {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 18px;
+      align-items: center;
+    }
+
+    .gallery-main {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .screen-card {
+      background: var(--bg-card);
+      border-radius: 18px;
+      padding: 10px;
+      border: 1px solid rgba(255,255,255,0.04);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .screen-card img {
+      border-radius: 14px;
+    }
+
+    .gallery-side {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+    }
+
+    .gallery-side strong {
+      color: var(--accent-3);
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+      font-size: 0.82rem;
+    }
+
+    /* FAQ */
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .faq-item {
+      background: var(--bg-soft);
+      border-radius: 16px;
+      padding: 12px 14px;
+      border: 1px solid rgba(255,255,255,0.04);
+      font-size: 0.86rem;
+    }
+
+    .faq-item h3 {
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+    }
+
+    /* CTA final */
+    .cta-final {
+      background: radial-gradient(circle at top, #142847 0, #050816 60%);
+      border-radius: 24px;
+      padding: 18px 18px 16px;
+      border: 1px solid rgba(77,168,255,0.35);
+      box-shadow: var(--shadow-soft);
+      text-align: center;
+    }
+
+    .cta-final h2 {
+      font-size: 1.4rem;
+      margin-bottom: 6px;
+    }
+
+    .cta-final p {
+      font-size: 0.92rem;
+      color: var(--text-soft);
+      margin-bottom: 14px;
+    }
+
+    .cta-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .contact-line {
+      font-size: 0.8rem;
+      color: var(--text-soft);
+    }
+
+    .contact-line a {
+      color: var(--accent-2);
+      font-weight: 600;
+    }
+
+    footer {
+      margin-top: auto;
+      padding: 16px 20px 24px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      background: rgba(3,5,12,0.96);
+      font-size: 0.78rem;
+      color: var(--text-soft);
+    }
+
+    .footer-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      color: var(--text-soft);
+    }
+
+    /* Responsividade */
+    @media (max-width: 980px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+        padding-top: 28px;
+      }
+      .hero-right {
+        order: -1;
+      }
+      .hero-card-inner {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .two-cols,
+      .features-grid,
+      .gallery,
+      .faq-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav {
+        padding-inline: 14px;
+      }
+      .hero {
+        padding-inline: 14px;
+      }
+      section {
+        padding-inline: 14px;
+      }
+      .hero-cta-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .btn {
+        justify-content: center;
+        width: 100%;
+      }
+      .hero-metrics {
+        gap: 10px;
+      }
+      .hero-card {
+        padding: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+  <!-- NAV -->
+  <header>
+    <nav class="nav">
+      <div class="nav-left">
+        <div class="logo-mark">
+          <!-- Trocar pelo caminho real do ícone -->
+          <img src="img/icone.png" alt="Logo fit365 APP">
+        </div>
+        <div class="logo-text">
+          <span>fit365 APP</span>
+          <span>Personal Trainer inteligente, 365 dias com você.</span>
+        </div>
+      </div>
+      <div class="nav-links">
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#para-alunos">Para alunos</a>
+        <a href="#para-professores">Para professores</a>
+        <a href="#recursos">Recursos</a>
+      </div>
+      <div class="nav-cta">
+        <a href="https://fit365app.com.br" class="btn btn-outline">Acessar app</a>
+        <a href="#cta-final" class="btn btn-primary">Começar agora</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <main>
+    <section class="hero">
+      <div>
+        <div class="hero-badge">
+          <span class="dot"></span>
+          <span>Login seguro com conta Google • Web & Mobile</span>
+        </div>
+        <h1 class="hero-title">
+          Seu treino, sua jornada, <span class="highlight">365 dias conectados</span>
+        </h1>
+        <p class="hero-subtitle">
+          O <strong>fit365 APP</strong> conecta Professores e Alunos em uma experiência fitness futurista:
+          treinos personalizados, mais de <strong>350 exercícios em movimento</strong>, gráficos de evolução
+          e agenda inteligente – tudo em um único lugar.
+        </p>
+
+        <div class="hero-pills">
+          <span class="pill"><strong>Alunos:</strong> cadastre-se e receba um treino modelo com o FIT365 PERSONAL AI.</span>
+          <span class="pill"><strong>Professores:</strong> cadastre seus alunos, crie treinos e acompanhe resultados.</span>
+        </div>
+
+        <div class="hero-cta-row">
+          <a href="https://fit365app.com.br" class="btn btn-primary">
+            Acessar Área do Aluno
+          </a>
+          <a href="https://fit365app.com.br" class="btn btn-outline">
+            Sou Personal Trainer
+          </a>
+        </div>
+        <p class="hero-caption">
+          Acesse pelo computador ou smartphone. <strong>Login rápido e seguro com conta Google.</strong>
+        </p>
+
+        <div class="hero-metrics">
+          <div class="hero-metrics-item">
+            <span class="value">+350</span>
+            exercícios em movimento, indoor e outdoor.
+          </div>
+          <div class="hero-metrics-item">
+            <span class="value">100%</span>
+            focado na rotina do Personal Trainer moderno.
+          </div>
+          <div class="hero-metrics-item">
+            <span class="value">365</span>
+            dias de acompanhamento visual da evolução do aluno.
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="hero-card">
+          <div class="hero-glow"></div>
+          <div class="hero-card-inner">
+            <div class="hero-avatar">
+              <!-- Trocar pelo caminho real da ilustração futurista -->
+              <img src="img/FIT365-PERSONAL-AI.png" alt="Assistente futurista FIT365 PERSONAL AI">
+              <div class="hero-avatar-tag">FIT365 PERSONAL AI</div>
+            </div>
+            <div class="hero-screen">
+              <div class="hero-screen-top">
+                <span class="hero-screen-title">Painel do Personal Trainer</span>
+                <span class="status-chip">Sessão ativa • aluno conectado</span>
+              </div>
+              <div class="hero-screen-main">
+                <div class="mini-card">
+                  <h3>Treino do dia</h3>
+                  <p>Sequência personalizada com imagens detalhadas de cada exercício.</p>
+                  <div class="mini-stat">
+                    <span class="label">Exercícios</span>
+                    <span class="value">08</span>
+                  </div>
+                  <div class="mini-stat">
+                    <span class="label">Tempo estimado</span>
+                    <span class="value">45 min</span>
+                  </div>
+                </div>
+                <div class="mini-card">
+                  <h3>Progresso &amp; metas</h3>
+                  <p>Evolução de medidas e indicadores corporais com gráficos temporais.</p>
+                  <div class="mini-stat">
+                    <span class="label">Meta atual</span>
+                    <span class="value">-11cm abdômen</span>
+                  </div>
+                  <div class="mini-stat">
+                    <span class="label">Em acompanhamento</span>
+                    <span class="value">+6 alunos</span>
+                  </div>
+                </div>
+              </div>
+              <div class="hero-screen-bottom">
+                <div class="hero-badge-highlight">
+                  <strong>Rotas automáticas, WhatsApp integrado e agenda de aulas</strong><br>
+                  Tudo organizado para o professor ganhar tempo e o aluno se manter motivado.
+                </div>
+                <div class="hero-small-tag">
+                  Login seguro com <span>Google</span><br>
+                  Nada de senhas esquecidas.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- COMO FUNCIONA -->
+    <section id="como-funciona">
+      <div class="section-header">
+        <div class="section-kicker">Como funciona</div>
+        <h2 class="section-title">Uma plataforma única para Professores e Alunos evoluírem juntos</h2>
+        <p class="section-subtitle">
+          O fit365 APP foi criado para simplificar a rotina do Personal Trainer e transformar a experiência
+          do aluno com treinos claros, visuais e totalmente conectados.
+        </p>
+      </div>
+
+      <div class="two-cols">
+        <div class="card" id="para-alunos">
+          <div class="badge"><strong>Alunos</strong> – acesso imediato ao FIT365 PERSONAL AI</div>
+          <h3>Área do Aluno</h3>
+          <p>
+            Cadastre-se em poucos cliques e receba um <strong>treino modelo</strong> para explorar
+            tudo o que a plataforma oferece. Se você tiver um Personal Trainer, ele pode habilitar sua
+            conta com o mesmo e-mail da sua conta Google.
+          </p>
+          <ul class="list">
+            <li>Acesso aos treinos com imagens detalhadas e instruções personalizadas.</li>
+            <li>Consulta rápida à agenda de aulas e rotinas da semana.</li>
+            <li>Visualização da evolução corporal com gráficos ao longo do tempo.</li>
+            <li>Metas claras: veja seus indicadores e acompanhe a linha do tempo de resultados.</li>
+          </ul>
+        </div>
+
+        <div class="card" id="para-professores">
+          <div class="badge"><strong>Professores</strong> – o app do Personal Trainer moderno</div>
+          <h3>Conta Professor</h3>
+          <p>
+            Personal Trainers gerenciam tudo em um só painel: cadastro de alunos, treinos personalizados,
+            medições, agenda e comunicação integrada. Caso precise de ajuda com seu cadastro, fale conosco
+            pelo <strong>WhatsApp (16) 99123-4437</strong>.
+          </p>
+          <ul class="list">
+            <li>Cadastro de alunos, endereços e contatos com atalho direto para o WhatsApp.</li>
+            <li>Geração automática de rotas no Google Maps para o local de cada aula.</li>
+            <li>Biblioteca com centenas de exercícios em movimento e possibilidade de subir imagens próprias (JPG ou GIF animado).</li>
+            <li>Criação de treinos exclusivos por aluno, com séries, repetições e observações.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- RECURSOS -->
+    <section id="recursos">
+      <div class="section-header">
+        <div class="section-kicker">Recursos</div>
+        <h2 class="section-title">Tudo o que você precisa para gerir treinos e resultados com precisão</h2>
+        <p class="section-subtitle">
+          Cada recurso foi pensado para maximizar o tempo do professor e potencializar o engajamento do aluno.
+        </p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature">
+          <div class="feature-tag">Catálogo inteligente</div>
+          <h3>Exercícios em movimento</h3>
+          <p>
+            Biblioteca com mais de <strong>117 exercícios de musculação</strong>, separados por região do corpo,
+            além de variações indoor e outdoor. Visual rico em imagens para facilitar a execução perfeita.
+          </p>
+        </div>
+        <div class="feature">
+          <div class="feature-tag">Treinos personalizados</div>
+          <h3>Planos sob medida</h3>
+          <p>
+            Crie treinos específicos para cada aluno, defina sequências, observações e atualize conforme a evolução.
+            Os alunos acessam tudo direto do app, no computador ou no smartphone.
+          </p>
+        </div>
+        <div class="feature">
+          <div class="feature-tag">Indicadores visuais</div>
+          <h3>Gráficos de evolução</h3>
+          <p>
+            Registre medidas corporais, acompanhe cintura, abdômen, etc. e visualize o progresso em
+            <strong>gráficos temporais</strong> claros, com metas e resultados lado a lado.
+          </p>
+        </div>
+        <div class="feature">
+          <div class="feature-tag">Rotina organizada</div>
+          <h3>Agenda de aulas</h3>
+          <p>
+            Tenha a <strong>agenda das aulas</strong> sempre à mão, com visualização diária e links rápidos
+            para deslocamento via Google Maps e contato imediato com o aluno.
+          </p>
+        </div>
+        <div class="feature">
+          <div class="feature-tag">Conectividade</div>
+          <h3>WhatsApp integrado</h3>
+          <p>
+            Contatos cadastrados com ligação direta para o WhatsApp. Comunicação rápida e profissional,
+            sem ficar procurando o número em outro lugar.
+          </p>
+        </div>
+        <div class="feature">
+          <div class="feature-tag">Acesso inteligente</div>
+          <h3>Login seguro com Google</h3>
+          <p>
+            Acesse com sua conta Google e elimine a dor de cabeça de senhas. Segurança e praticidade
+            tanto para Professores quanto para Alunos.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALERIA / PRINTS -->
+    <section>
+      <div class="section-header">
+        <div class="section-kicker">Experiência visual</div>
+        <h2 class="section-title">Interface futurista, pensada para clareza e motivação</h2>
+        <p class="section-subtitle">
+          O fit365 APP traz um visual moderno, com destaque para os exercícios em movimento e os gráficos de evolução.
+        </p>
+      </div>
+
+      <div class="gallery">
+        <div class="gallery-main">
+          <div class="screen-card">
+            <!-- Trocar pelo caminho real da tela de exercícios -->
+            <img src="img/app-screen-1.png" alt="Exemplo de tela com exercícios do treino no fit365 APP">
+          </div>
+          <div class="screen-card">
+            <!-- Trocar pelo caminho real da tela de gráficos -->
+            <img src="img/app-screen-2.png" alt="Exemplo de gráfico de evolução de medidas no fit365 APP">
+          </div>
+        </div>
+        <div class="gallery-side">
+          <p>
+            Cada treino é apresentado com <strong>imagens claras</strong> dos exercícios, facilitando a execução
+            correta mesmo para iniciantes. Nos indicadores, você visualiza a jornada do aluno ao longo dos meses,
+            comparando meta e resultado em tempo real.
+          </p>
+          <div class="mini-grid">
+            <div>
+              <strong>Visual responsivo</strong><br>
+              O mesmo nível de experiência no computador, tablet ou smartphone.
+            </div>
+            <div>
+              <strong>Gráficos motivadores</strong><br>
+              Acompanhe o efeito do treino na prática, reforçando a disciplina e a constância.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CARD DIVULGAÇÃO -->
+    <section>
+      <div class="two-cols">
+        <div class="card">
+          <!-- Trocar pelo caminho real do card / QRCode -->
+          <img src="img/fit365card.png" alt="Card de divulgação do fit365 APP com QR Code">
+        </div>
+        <div class="card">
+          <h3>Personalize, acompanhe e motive seus alunos.</h3>
+          <p>
+            O <strong>fit365 APP</strong> nasceu para ser o app do <strong>Personal Trainer moderno</strong>.
+            Do primeiro treino de adaptação às metas mais avançadas, a plataforma dá suporte visual e
+            inteligente em cada etapa da jornada.
+          </p>
+          <ul class="list">
+            <li>Fluxo simples para cadastro de alunos e configuração da conta do Professor.</li>
+            <li>Recursos práticos para quem trabalha com aulas presenciais, online ou híbridas.</li>
+            <li>Uma experiência gamificada e visual que ajuda a manter o aluno engajado por mais tempo.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ / DÚVIDAS -->
+    <section>
+      <div class="section-header">
+        <div class="section-kicker">Dúvidas frequentes</div>
+        <h2 class="section-title">Perguntas rápidas sobre o fit365 APP</h2>
+      </div>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h3>Preciso instalar algum aplicativo?</h3>
+          <p>
+            Não necessariamente. O fit365 APP funciona direto no navegador, tanto no computador quanto
+            no smartphone. Você pode criar um atalho na tela inicial do celular e usar como se fosse
+            um app nativo.
+          </p>
+        </div>
+        <div class="faq-item">
+          <h3>O aluno pode acessar sozinho?</h3>
+          <p>
+            Sim. O aluno se cadastra na Área do Aluno, recebe um treino modelo via FIT365 PERSONAL AI
+            e, se tiver um Personal Trainer, pode ser vinculado ao seu professor pelo e-mail da conta Google.
+          </p>
+        </div>
+        <div class="faq-item">
+          <h3>Como o professor gerencia os treinos?</h3>
+          <p>
+            O professor acessa a <strong>Conta Professor</strong> e monta treinos personalizados
+            usando o catálogo de exercícios em movimento ou suas próprias imagens. Depois associa
+            diretamente cada treino aos seus alunos.
+          </p>
+        </div>
+        <div class="faq-item">
+          <h3>É possível acompanhar evolução de medidas?</h3>
+          <p>
+            Sim. O sistema permite registrar medidas corporais, metas e datas de acompanhamento,
+            exibindo tudo em gráficos claros para que o aluno veja a transformação acontecendo.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section id="cta-final">
+      <div class="cta-final">
+        <h2>Pronto para treinar em modo futurista?</h2>
+        <p>
+          Conecte-se ao <strong>fit365 APP</strong>, personalize treinos, acompanhe indicadores e
+          mantenha seus alunos motivados 365 dias por ano.
+        </p>
+        <div class="cta-buttons">
+          <a href="https://fit365app.com.br" class="btn btn-primary">Acessar Área do Aluno</a>
+          <a href="https://fit365app.com.br" class="btn btn-outline">Sou Personal Trainer</a>
+        </div>
+        <div class="contact-line">
+          Dúvidas ou suporte? Fale conosco pelo WhatsApp:
+          <a href="https://wa.me/5516991234437" target="_blank" rel="noopener noreferrer">(16) 99123-4437</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div>© <span id="year"></span> fit365 APP. Todos os direitos reservados.</div>
+      <div class="footer-links">
+        <a href="https://fit365app.com.br">Acessar aplicação</a>
+        <span>•</span>
+        <a href="#como-funciona">Sobre o app</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  // Atualiza ano automaticamente
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
